@@ -5,3 +5,8 @@ export async function getRepoInfo() {
     method: 'GET',
   });
 }
+export async function getWeekCommit() {
+  return request('/api/week_commit', {
+    method: 'GET',
+  });
+}
