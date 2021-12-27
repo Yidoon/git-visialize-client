@@ -21,13 +21,13 @@ const topColResponsiveProps = {
 const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => {
   const [repoInfo, setRepoInfo] = useState<any>({});
   const [weekCommitData, setWeekCommitData] = useState<any>({});
+
   const init = async () => {
     const res = await getRepoInfo();
     setRepoInfo(res.data);
   };
   const reqWeekCommit = async () => {
     const weekCommitRes = await getWeekCommit();
-    console.log(weekCommitRes.data, '=====');
 
     setWeekCommitData(weekCommitRes.data);
   };
@@ -41,7 +41,6 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
     init();
     reqWeekCommit();
   }, []);
-  console.log(repoInfo, 'repoInfo');
   return (
     <Row gutter={24}>
       <Col {...topColResponsiveProps}>

@@ -10,7 +10,6 @@ import IntroduceRow from './components/IntroduceRow';
 import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
 import ProportionSales from './components/ProportionSales';
-import OfflineData from './components/OfflineData';
 import { useRequest } from 'umi';
 
 import { fakeChartData } from './service';
@@ -144,16 +143,6 @@ const Analysis: FC<AnalysisProps> = () => {
             </Suspense>
           </Col>
         </Row>
-
-        <Suspense fallback={null}>
-          <OfflineData
-            activeKey={activeKey}
-            loading={loading}
-            offlineData={data?.offlineData || []}
-            offlineChartData={data?.offlineChartData || []}
-            handleTabChange={handleTabChange}
-          />
-        </Suspense>
       </>
     </GridContent>
   );
