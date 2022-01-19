@@ -1,9 +1,9 @@
-import { Card, Row, Col, Select } from 'antd';
+import { getContributors, getWorldCloud } from '@/services/visialize/api';
+import { Card, Row, Select } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 import type { DataItem } from '../data.d';
-import { getWorldCloud, getContributors } from '@/services/visialize/api';
-import WordColudChart from './WordCloud/index';
 import { wordcloud } from './WordCloud/echart-wordcloud';
+import WordColudChart from './WordCloud/index';
 const { Option } = Select;
 const TopSearch = ({
   loading,
@@ -17,7 +17,8 @@ const TopSearch = ({
   const [specPerson, setSpecPerson] = useState<any>('all');
   const [contributorList, setContributorList] = useState<any[]>([]);
   const exactWordCloudData = useMemo(() => {
-    return wordCloudData[specPerson];
+    // console.log(wordCloudData, 'wordCloudData');
+    return wordCloudData[specPerson] || [];
   }, [wordCloudData, specPerson]);
   const reqWordColud = async (contributor?: string) => {
     const res = await getWorldCloud(contributor);
@@ -34,12 +35,12 @@ const TopSearch = ({
     reqWordColud();
     reqContributor();
   }, []);
+  console.log(exactWordCloudData, 'exactWordCloudData');
   return (
     <Card
       loading={loading}
       bordered={false}
       title="词云"
-      // extra={dropdownGroup}
       style={{
         height: '100%',
       }}
@@ -60,7 +61,7 @@ const TopSearch = ({
           })}
         </Select>
       </Row>
-      <WordColudChart data={wordcloud(exactWordCloudData)} />
+      <WordColudChart data={wordcloud(exactWordCloudData || [])} />
     </Card>
   );
 };

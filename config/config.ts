@@ -1,6 +1,5 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 
@@ -81,17 +80,22 @@ export default defineConfig({
           path: '/dashboard/analysis',
           component: './dashboard/analysis',
         },
-        {
-          name: 'monitor',
-          icon: 'smile',
-          path: '/dashboard/monitor',
-          component: './dashboard/monitor',
-        },
+        // {
+        //   name: 'monitor',
+        //   icon: 'smile',
+        //   path: '/dashboard/monitor',
+        //   component: './dashboard/monitor',
+        // },
         {
           name: 'workplace',
           icon: 'smile',
           path: '/dashboard/workplace',
           component: './dashboard/workplace',
+        },
+        {
+          path: '/dashboard/report-entry',
+          name: 'report-entry',
+          component: './mobile/index.tsx',
         },
       ],
     },

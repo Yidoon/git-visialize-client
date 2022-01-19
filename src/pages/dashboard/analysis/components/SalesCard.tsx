@@ -1,18 +1,17 @@
-import { Card, Col, DatePicker, Row, Tabs, Select } from 'antd';
 import {
-  getContributorsCommitData,
   getContributorCommitDataByMonth,
   getContributors,
+  getContributorsCommitData,
 } from '@/services/visialize/api';
-
+import { Column, Line } from '@ant-design/charts';
+import { Card, Col, DatePicker, Row, Select, Tabs } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
-import { Column, Line } from '@ant-design/charts';
-
 import numeral from 'numeral';
+import { useEffect, useMemo, useState } from 'react';
 import type { DataItem } from '../data.d';
 import styles from '../style.less';
-import { useEffect, useMemo, useState } from 'react';
+
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 export type TimeType = 'today' | 'week' | 'month' | 'year';
 
@@ -149,6 +148,7 @@ const SalesCard = ({
                 placeholder="请选择"
                 showSearch
                 onChange={onContributorChange}
+                allowClear
               >
                 {contributorList.map((item) => {
                   return (

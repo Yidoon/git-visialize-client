@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
 import 'echarts-wordcloud';
+import React, { useEffect, useRef } from 'react';
 
 let chartInstance: any;
 const WordCloud = (prop: any) => {
@@ -13,11 +13,14 @@ const WordCloud = (prop: any) => {
     initChart();
   }, []);
   useEffect(() => {
-    if (data && chartInstance) {
-      chartInstance.setOption(data);
+    if (data && data.series && chartInstance) {
+      console.log(data, 'data=======');
+      setTimeout(() => {
+        chartInstance.setOption(data);
+      }, 10);
     }
   }, [data]);
-  return <div id="chart-wrap" style={{ height: '400px', width: '100%' }} ref={domRef}></div>;
+  return <div id="chart-wrap" style={{ height: '400px', width: '100%' }} ref={domRef} />;
 };
 
 export default WordCloud;

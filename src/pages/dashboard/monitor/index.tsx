@@ -87,14 +87,6 @@ const Monitor: FC = () => {
               <Row style={{ padding: '16px 0' }}>
                 <Col span={8}>
                   <RingProgress forceFit height={128} percent={0.28} />
-                  {/* <Pie
-                    animate={false}
-                    percent={28}
-                    title="中式快餐"
-                    total="28%"
-                    height={128}
-                    lineWidth={2}
-                  /> */}
                 </Col>
                 <Col span={8}>
                   <RingProgress color="#5DDECF" forceFit height={128} percent={0.22} />
@@ -112,7 +104,7 @@ const Monitor: FC = () => {
               bordered={false}
               bodyStyle={{ overflow: 'hidden' }}
             >
-              <WordCloud
+              {wordCloudData && <WordCloud
                 data={wordCloudData}
                 forceFit
                 height={162}
@@ -120,8 +112,7 @@ const Monitor: FC = () => {
                   fontSize: [10, 20],
                 }}
                 shape="triangle"
-              />
-              {/* <TagCloud data={data?.list || []} height={161} /> */}
+              />}
             </Card>
           </Col>
           <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>

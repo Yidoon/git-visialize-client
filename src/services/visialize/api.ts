@@ -46,3 +46,19 @@ export async function getFileLineCodeTop10() {
     method: 'GET',
   });
 }
+
+export async function search(params?: any) {
+  return request('/api/search', {
+    method: 'GET',
+    params: params,
+  });
+}
+export async function getBranchs() {
+  return request('/api/branchs')
+}
+export async function getCommitByBranchs (params: any) {
+return request('/api/commit_by_branchs', {
+  method: 'GET',
+  params: params,
+})
+}

@@ -1,5 +1,5 @@
 import { getRepoInfo, getWeekCommit } from '@/services/visialize/api';
-import { Progress, TinyColumn } from '@ant-design/charts';
+import { TinyColumn } from '@ant-design/charts';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Col, Row, Tooltip } from 'antd';
 import dayjs from 'dayjs';
@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from 'react';
 import type { DataItem } from '../data.d';
 import styles from '../style.less';
 import { ChartCard, Field } from './Charts';
-import Trend from './Trend';
 
 const topColResponsiveProps = {
   xs: 24,
@@ -110,7 +109,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           />
         </ChartCard>
       </Col>
-      <Col {...topColResponsiveProps}>
+      {/* <Col {...topColResponsiveProps}>
         <ChartCard
           loading={loading}
           bordered={false}
@@ -151,7 +150,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
             ]}
           />
         </ChartCard>
-      </Col>
+      </Col> */}
     </Row>
   );
 };

@@ -172,20 +172,6 @@ const Center: React.FC<RouteChildrenProps> = () => {
                 <Divider dashed />
                 <TagList tags={currentUser.tags || []} />
                 <Divider style={{ marginTop: 16 }} dashed />
-                <div className={styles.team}>
-                  <div className={styles.teamTitle}>团队</div>
-                  <Row gutter={36}>
-                    {currentUser.notice &&
-                      currentUser.notice.map((item) => (
-                        <Col key={item.id} lg={24} xl={12}>
-                          <Link to={item.href}>
-                            <Avatar size="small" src={item.logo} />
-                            {item.member}
-                          </Link>
-                        </Col>
-                      ))}
-                  </Row>
-                </div>
               </div>
             )}
           </Card>
