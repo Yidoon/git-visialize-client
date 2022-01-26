@@ -1,24 +1,14 @@
-import type { FC } from 'react';
-import {
-  Card,
-  Col,
-  Input,
-  Row,
-  Table,
-  Space,
-  Button,
-  DatePicker,
-  Form,
-} from 'antd';
-import { search, getBranchs } from '@/services/visialize/api';
-
-import { Link, useRequest } from 'umi';
+import { getBranchs, getCommitDetail, search } from '@/services/visialize/api';
 import { PageContainer } from '@ant-design/pro-layout';
+import { Button, Card, Col, DatePicker, Form, Input, Row, Space, Table } from 'antd';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useRequest } from 'umi';
+import Report from './components/Report';
+import FileState from './FileState';
+import { queryProjectNotice } from './service';
 import styles from './style.less';
 
-import { queryProjectNotice } from './service';
-import { useState, useEffect } from 'react';
-import Report from './components/Report';
 const { RangePicker } = DatePicker;
 
 const Workplace: FC = () => {
@@ -34,7 +24,8 @@ const Workplace: FC = () => {
     // const res = await http.get('/api/look-commit-detail', {
     //   commit_hash: hash,
     // });
-    setFileStatData('');
+    const res = await getCommitDetail({ commit: hash });
+    setFileStatData(res.data);
     setIsFileStat(true);
   };
   const columns = [
@@ -99,14 +90,14 @@ const Workplace: FC = () => {
   };
   const reqBranchList = async () => {
     const res = await getBranchs();
-    
+
     setBranchList(res.data);
   };
   useEffect(() => {
     reqSearch();
     reqBranchList();
   }, []);
-  
+
   return (
     <PageContainer>
       <div style={{ marginBottom: 24, backgroundColor: '#ffffff', padding: 16 }}>
@@ -147,6 +138,13 @@ const Workplace: FC = () => {
           setReportVisible(false);
         }}
         branchList={branchList}
+      />
+      <FileState
+        visible={isFileStat}
+        data={fileStatData}
+        onCancle={() => {
+          setIsFileStat(false);
+        }}
       />
     </PageContainer>
   );

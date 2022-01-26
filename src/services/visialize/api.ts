@@ -54,11 +54,18 @@ export async function search(params?: any) {
   });
 }
 export async function getBranchs() {
-  return request('/api/branchs')
+  return request('/api/branchs');
 }
-export async function getCommitByBranchs (params: any) {
-return request('/api/commit_by_branchs', {
-  method: 'GET',
-  params: params,
-})
+export async function getCommitByBranchs(params: any) {
+  return request('/api/commit_by_branchs', {
+    method: 'GET',
+    params: params,
+  });
+}
+export async function getCommitDetail(params?: any) {
+  console.log(params, 'params');
+  return request('/api/commit_detail', {
+    method: 'GET',
+    params: params,
+  });
 }
