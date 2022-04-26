@@ -1,14 +1,17 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-
-import { Test } from '@comp'
+import routes from './routes'
 
 function App() {
+  const routesList = routes.map((item) => {
+    return <Route path={item.path} element={<item.element />} key={item.key} />
+  })
+
   return (
     <div className="App">
-      <Test />
-      121212
-      <div className="text-2xl">112121</div>
+      <h1>Welcome to React Router!</h1>
+      <Routes>{routesList}</Routes>
     </div>
   )
 }
