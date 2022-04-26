@@ -23,14 +23,14 @@ const Test = () => {
     console.log(res, 'request')
   }
   const init = async () => {
-    testApi()
+    // testApi()
   }
   useEffect(() => {
     init()
   }, [])
   return (
     <div className={styles['test']}>
-      <h1>Hello Test</h1>
+      <h1 className="">Hello Test</h1>
     </div>
   )
 }

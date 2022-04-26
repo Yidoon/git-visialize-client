@@ -7,6 +7,8 @@ function App() {
   return (
     <div className="App">
       <Test />
+      121212
+      <div className="text-2xl">112121</div>
     </div>
   )
 }
