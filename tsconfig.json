@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@comp": ["./src/components/index"],
+      "@comp/*": ["./src/components/*"],
       "@utils": ["./src/utils/index"],
       "@lib/*": ["./src/lib/*"],
       "@pages/*": ["./src/pages/*"]
