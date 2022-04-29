@@ -9,7 +9,7 @@ const Home = () => {
   )
   const Intro = (
     <div className="intro-wrap">
-      <h1 className="text-6xl">Visualize git Repository</h1>
+      <h1 className="text-6xl">Visualize data of git repository</h1>
     </div>
   )
   const SignInGithubTips = (
@@ -20,9 +20,23 @@ const Home = () => {
       <img src="../../../public/images/Detail.png" alt="" />
     </div>
   )
+  const Header = (
+    <div className="header-wrap mt-2 ">
+      <a
+        className="flex cursor-pointer"
+        href="https://github.com/Yidoon/git-visualize"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub
+        <img className="ml-2" src="../../../public/images/external-link.svg" alt="" />
+      </a>
+    </div>
+  )
   return (
     <div className="home">
       <div className="content">
+        {Header}
         {Intro}
         {Search}
         {SignInGithubTips}
