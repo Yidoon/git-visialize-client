@@ -1,5 +1,5 @@
 import Home from '@pages/home'
-import RepoStats from '@pages/repo_stats'
+import Detail from '@pages/detail'
 const routes = [
   {
     path: '/',
@@ -7,9 +7,9 @@ const routes = [
     key: 'home',
   },
   {
-    path: '/repo-stats',
-    element: RepoStats,
-    key: 'repo-stats',
+    path: '/detail',
+    element: Detail,
+    key: 'detail',
   },
 ]
 
