@@ -2,7 +2,7 @@ import { objToUrlQueryString } from '@utils'
 
 class Request {
   private defaultOptions = { mode: 'no-cors', 'Content-Type': 'application/json' }
-  async get(url: string, query: IKV, option?: any) {
+  async get(url: string, query?: IKV, option?: any) {
     let _url = url
     if (query) {
       const queryString = objToUrlQueryString(query)
