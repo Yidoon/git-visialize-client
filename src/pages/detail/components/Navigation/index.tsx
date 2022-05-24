@@ -44,15 +44,10 @@ const Navigation = () => {
       )
     })
   }, [activeKey])
+
   return (
     <div className="navigation">
-      <ul>
-        {lis}
-        {/* <li className="navigation-item active-item">Commit</li>
-        <li className="navigation-item">Contributor</li>
-        <li className="navigation-item">Activity</li>
-        <li className="navigation-item">Other</li> */}
-      </ul>
+      <ul>{lis}</ul>
     </div>
   )
 }
