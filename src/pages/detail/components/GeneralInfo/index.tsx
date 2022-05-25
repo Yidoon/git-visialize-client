@@ -5,6 +5,20 @@ import { useEffect, useState } from 'react'
 import { IGeneralData } from '../../types'
 import './index.less'
 
+interface IProps {
+  iconUrl: string
+  value: React.ReactNode
+  label: React.ReactNode
+}
+const Item = (props: IProps) => {
+  const { iconUrl, value, label } = props
+  return (
+    <div className="flex items-center h-8 text-base space-x-2">
+      <img src={iconUrl} alt="" className="h-5" />
+      <span>{`${label}: ${value}`}</span>
+    </div>
+  )
+}
 interface IProps {}
 const GeneralInfo = (props: IProps) => {
   const [generalData, setGeneralData] = useState<IGeneralData | null>(null)
@@ -16,26 +30,59 @@ const GeneralInfo = (props: IProps) => {
       github_repo_url: repoUrl,
       access_token: accessToken,
     })
-    console.log(res, 'res')
+    setGeneralData(res.data)
   }
   useEffect(() => {
-    // reqRepoInfo()
+    reqRepoInfo()
   }, [])
   return (
-    <div className="general-info">
-      <div>
-        <FontAwesomeIcon icon={faGithub} />
-        Project: react
-      </div>
-      <div>Age: 8 year 364 day</div>
-      <div>Created at: 2013-05-25 12:15:54</div>
-      <div>Stars: 187597</div>
-      <div>License: MIT License</div>
-      <div>Code count: 596151</div>
-      <div>File count: 2433</div>
-      <div>Contriburots count: 1720</div>
-      <div>Volume: 174.42 MB</div>
-      <div>Commit count: 123602</div>
+    <div className="general-info ml-6 space-y-1">
+      <Item
+        iconUrl="../../../../../public/images/github-fill.svg"
+        value={generalData?.name}
+        label="Project"
+      />
+      <Item
+        iconUrl="../../../../../public/images/law.svg"
+        value={generalData?.license}
+        label="License"
+      />
+      <Item
+        iconUrl="../../../../../public/images/birthday.svg"
+        value={generalData?.age}
+        label="Age"
+      />
+      <Item
+        iconUrl="../../../../../public/images/star.svg"
+        value={generalData?.star}
+        label="Stars"
+      />
+      <Item
+        iconUrl="../../../../../public/images/code.svg"
+        value={generalData?.code_count.total}
+        label="Code count"
+      />
+      <Item
+        iconUrl="../../../../../public/images/file.svg"
+        value={generalData?.file_count}
+        label="File count"
+      />
+      <Item
+        iconUrl="../../../../../public/images/people.svg"
+        value={generalData?.contributor_count}
+        label="Contriburot count"
+      />
+      <Item
+        iconUrl="../../../../../public/images/storage.svg"
+        value={generalData?.volume}
+        label="Volume"
+      />
+      <Item
+        iconUrl="../../../../../public/images/git-commit.svg"
+        value={generalData?.commit_count}
+        label="Commit count"
+      />
+      {/* <div>Created at: 2013-05-25 12:15:54</div> */}
       <div className="collect-time">latest update 2022-05-22 13:20:56</div>
     </div>
   )
