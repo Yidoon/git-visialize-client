@@ -1,3 +1,5 @@
+export type ActiveKey = 'commit' | 'contributor' | 'activity' | 'other'
+
 export interface IGeneralData {
   name: string
   age: string

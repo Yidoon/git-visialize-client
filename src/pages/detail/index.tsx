@@ -4,20 +4,25 @@ import Layout, { Sider, Content } from '@comp/Layout'
 import GeneralInfo from './components/GeneralInfo'
 import LogoText from './components/LogoText'
 import Navigation from './components/Navigation'
+import RepoData from './components/RepoData'
+import StoreProvider from './provider'
 
-const CardCommonClass = 'mr-6'
 const Detail = () => {
   return (
-    <div className="detail h-full-height">
-      <Layout>
-        <Sider className="detail-sider">
-          <LogoText />
-          <Navigation />
-          <GeneralInfo />
-        </Sider>
-        <Content className="detail-content">Content</Content>
-      </Layout>
-    </div>
+    <StoreProvider>
+      <div className="detail h-full-height">
+        <Layout>
+          <Sider className="detail-sider">
+            <LogoText />
+            <Navigation />
+            <GeneralInfo />
+          </Sider>
+          <Content className="detail-content">
+            <RepoData />
+          </Content>
+        </Layout>
+      </div>
+    </StoreProvider>
   )
 }
 

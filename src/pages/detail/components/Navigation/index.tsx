@@ -1,9 +1,12 @@
+import { DetailContext } from '@pages/detail/provider'
+import { ActiveKey } from '@pages/detail/types'
 import classnames from 'classnames'
-import { useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import './index.less'
 
 const Navigation = () => {
-  const [activeKey, setActiveKey] = useState<string>('commit')
+  const state = useContext(DetailContext)
+  const { activeKey, setActiveKey } = state
   const navList = [
     {
       name: 'Commits',
@@ -22,7 +25,7 @@ const Navigation = () => {
       key: 'other',
     },
   ]
-  const handleNavClick = (key: string) => {
+  const handleNavClick = (key: ActiveKey) => {
     setActiveKey(key)
   }
   const lis = useMemo(() => {
@@ -36,7 +39,7 @@ const Navigation = () => {
           className={liClassNames}
           key={item.key}
           onClick={() => {
-            handleNavClick(item.key)
+            handleNavClick(item.key as ActiveKey)
           }}
         >
           {item.name}
