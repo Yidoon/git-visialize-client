@@ -7,13 +7,13 @@ import './index.less'
 import classnames from 'classnames'
 import Loading from '@comp/Loading'
 
-interface IProps {
+interface IItem {
   iconUrl: string
   value: React.ReactNode
   label: React.ReactNode
   link?: string
 }
-const Item = (props: IProps) => {
+const Item = (props: IItem) => {
   const { iconUrl, value, label, link } = props
   const _classNames = classnames('flex items-center h-8 text-base space-x-2', {
     underline: link,
@@ -35,6 +35,7 @@ const Item = (props: IProps) => {
   }
   return renderContent()
 }
+
 interface IProps {}
 const GeneralInfo = (props: IProps) => {
   const [generalData, setGeneralData] = useState<IGeneralData | null>(null)
