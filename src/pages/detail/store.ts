@@ -1,9 +1,12 @@
-import { useState } from "react"
-import { ActiveKey } from "./types"
+import { useState } from 'react'
+import { ActiveKey } from './types'
 
 const useStore = () => {
   const [activeKey, setActiveKey] = useState<ActiveKey>('commit')
-  return { activeKey, setActiveKey }
+  const navTo = (hashKey: string) => {
+    window.location.hash = `#${hashKey}`
+  }
+  return { activeKey, setActiveKey, navTo }
 }
 
 export default useStore

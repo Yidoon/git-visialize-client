@@ -13,13 +13,13 @@ interface IContext {
   setActiveKey: Dispatch<ActiveKey>
 }
 
-export const DetailContext = React.createContext<IContext>(
-  undefined as unknown as IContext,
+export const DetailContext = React.createContext<ReturnType<typeof useStore>>(
+  undefined as unknown as ReturnType<typeof useStore>,
 )
 
 const StoreProvider: React.FC = ({ children }) => {
   const store = useStore()
-  return <DetailContext.Provider value={store}>{children}</DetailContext.Provider>
+  return <DetailContext.Provider value={store || {}}>{children}</DetailContext.Provider>
 }
 
 export default StoreProvider

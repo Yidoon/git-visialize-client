@@ -6,7 +6,7 @@ import './index.less'
 
 const Navigation = () => {
   const state = useContext(DetailContext)
-  const { activeKey, setActiveKey } = state
+  const { activeKey, setActiveKey, navTo } = state
   const navList = [
     {
       name: 'Commits',
@@ -27,6 +27,7 @@ const Navigation = () => {
   ]
   const handleNavClick = (key: ActiveKey) => {
     setActiveKey(key)
+    navTo(key)
   }
   const lis = useMemo(() => {
     return navList.map((item) => {
@@ -49,7 +50,7 @@ const Navigation = () => {
   }, [activeKey])
 
   return (
-    <div className="navigation">
+    <div className="navigation h-full">
       <ul>{lis}</ul>
     </div>
   )
