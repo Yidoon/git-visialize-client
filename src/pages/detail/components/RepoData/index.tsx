@@ -37,7 +37,7 @@ const RepoData = () => {
 
     return clientX >= left && clientX <= right && clientY >= top && clientY <= bottom
   }
-  const handleScrolling = (e) => {
+  const handleScrolling = throttle((e) => {
     const { scrollTop } = e.target
     const elsScope = getElsScreenScope()
 
@@ -54,14 +54,21 @@ const RepoData = () => {
         break
       }
     }
-  }
+  })
   const syncScrollNav = () => {
-    document
-      .getElementById('repo-data')!
-      .addEventListener('scroll', throttle(handleScrolling))
+    document.getElementById('repo-data')!.addEventListener('scroll', handleScrolling)
+  }
+  const handleCursorMove = throttle(() => {
+    scrollModeRef.current = undefined
+  })
+  const bindCursorEvent = () => {
+    console.log(123)
+
+    document.getElementById('repo-data')!.addEventListener('mousemove', handleCursorMove)
   }
   useEffect(() => {
     syncScrollNav()
+    bindCursorEvent()
   }, [])
 
   return (
