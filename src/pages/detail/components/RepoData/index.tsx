@@ -7,21 +7,7 @@ import { throttle } from 'lodash-es'
 
 const RepoData = () => {
   const state = useContext(DetailContext)
-  const { activeKey, setActiveKey, scrollModeRef } = state || {}
-  const switchRender = () => {
-    switch (activeKey) {
-      case 'commit':
-        return <Commit />
-      case 'contributor':
-        return <Contributor />
-      case 'activity':
-        return <Activity />
-      case 'other':
-        return 'other'
-      default:
-        return null
-    }
-  }
+  const { setActiveKey, scrollModeRef } = state || {}
   const getElsScreenScope = () => {
     const elIds = ['commit', 'contributor', 'activity', 'other']
     const scopeMap = new Map()
@@ -31,20 +17,11 @@ const RepoData = () => {
     })
     return scopeMap
   }
-  const isCursorInElement = (e, el) => {
-    const { top, bottom, left, right } = el.getBoundingClientRect()
-    const { clientX, clientY } = e.target
-
-    return clientX >= left && clientX <= right && clientY >= top && clientY <= bottom
-  }
   const handleScrolling = throttle((e) => {
     const { scrollTop } = e.target
     const elsScope = getElsScreenScope()
 
-    if (
-      scrollModeRef.current === 'click' &&
-      !isCursorInElement(e, document.getElementById('repo-data'))
-    ) {
+    if (scrollModeRef.current === 'click') {
       return
     }
     for (const rect of elsScope) {
@@ -62,8 +39,6 @@ const RepoData = () => {
     scrollModeRef.current = undefined
   })
   const bindCursorEvent = () => {
-    console.log(123)
-
     document.getElementById('repo-data')!.addEventListener('mousemove', handleCursorMove)
   }
   useEffect(() => {
