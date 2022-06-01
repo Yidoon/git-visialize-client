@@ -6,7 +6,7 @@ import './index.less'
 
 const Navigation = () => {
   const state = useContext(DetailContext)
-  const { activeKey, setActiveKey, navTo } = state
+  const { activeKey, setActiveKey, navTo, scrollModeRef } = state
   const navList = [
     {
       name: 'Commits',
@@ -27,7 +27,12 @@ const Navigation = () => {
   ]
   const handleNavClick = (key: ActiveKey) => {
     setActiveKey(key)
-    navTo(key)
+    scrollModeRef.current = 'click'
+    document.getElementById(key)!.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
   }
   const lis = useMemo(() => {
     return navList.map((item) => {

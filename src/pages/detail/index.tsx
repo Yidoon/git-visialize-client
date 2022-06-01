@@ -17,7 +17,7 @@ const Detail = () => {
             <Navigation />
             <GeneralInfo />
           </Sider>
-          <Content className="detail-content overflow-auto">
+          <Content className="detail-content">
             <RepoData />
           </Content>
         </Layout>
