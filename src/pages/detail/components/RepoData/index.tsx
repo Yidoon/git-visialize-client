@@ -4,6 +4,7 @@ import Activity from '../Activity'
 import Commit from '../Commit'
 import Contributor from '../Contributor'
 import { throttle } from 'lodash-es'
+import './index.less'
 
 const RepoData = () => {
   const state = useContext(DetailContext)
@@ -47,17 +48,17 @@ const RepoData = () => {
   }, [])
 
   return (
-    <div className="repo-data text-center h-full overflow-auto" id="repo-data">
-      <div className="commit-wrap h-2/4" id="commit">
+    <div className="repo-data-wrap text-center h-full overflow-auto" id="repo-data">
+      <div className="commit-wrap" id="commit">
         <Commit />
       </div>
-      <div className="contributor-wrap h-2/4" id="contributor">
+      <div className="contributor-wrap" id="contributor">
         <Contributor />
       </div>
-      <div className="activity-wrap h-2/4" id="activity">
+      <div className="activity-wrap" id="activity">
         <Activity />
       </div>
-      <div className="other-wrap h-2/4" id="other">
+      <div className="other-wrap" id="other">
         other
       </div>
     </div>

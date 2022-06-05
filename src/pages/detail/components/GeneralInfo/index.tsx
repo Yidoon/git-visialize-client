@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import request from '@lib/request'
 import { useEffect, useState } from 'react'
 import { IGeneralData } from '../../types'
@@ -53,7 +51,6 @@ const GeneralInfo = (props: IProps) => {
   useEffect(() => {
     reqRepoInfo()
   }, [])
-  console.log(generalData, 'generalData')
 
   return (
     <div className="general-info ml-6 space-y-1">

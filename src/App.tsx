@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import routes from './routes'
+import 'antd/dist/antd.css'
 
 function App() {
   const routesList = routes.map((item) => {

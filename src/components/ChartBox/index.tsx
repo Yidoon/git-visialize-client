@@ -7,7 +7,7 @@ interface IProps {
 const ChartBox: React.FC<IProps> = (props) => {
   const { title, children } = props
   return (
-    <div className="chart-box flex flex-col">
+    <div className="chart-box flex flex-col mb-2 bg-white">
       {title && <div className="chart-title">{title}</div>}
       <div className="chart-content flex-1">{children}</div>
     </div>

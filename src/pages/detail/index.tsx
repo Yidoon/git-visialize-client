@@ -1,4 +1,3 @@
-import StatisticCard from '@comp/StatisticCard'
 import './index.less'
 import Layout, { Sider, Content } from '@comp/Layout'
 import GeneralInfo from './components/GeneralInfo'

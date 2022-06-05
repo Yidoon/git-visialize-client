@@ -1,4 +1,4 @@
-export interface ICommitYearAndCount {
+export interface ICommitDateAndCount {
   date: string
   count: number
 }
