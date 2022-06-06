@@ -1,11 +1,13 @@
 import request from '@lib/request'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import * as echarts from 'echarts'
 import { ICommitDateAndCount } from '../../types'
 import { map } from 'lodash-es'
+import RankList from '@pages/detail/components/RankList'
 
 const DOMID = 'commit-until-year'
 const CommitPerYear = () => {
+  const [data, setData] = useState<ICommitDateAndCount[]>([])
   const getCommitPerYear = async (): Promise<ICommitDateAndCount[]> => {
     return new Promise(async (resolve, reject) => {
       const repoUrl = 'git@github.com:facebook/react.git'
@@ -40,15 +42,21 @@ const CommitPerYear = () => {
 
   const init = async () => {
     const data = await getCommitPerYear()
-    console.log(data, 'ddd')
-
+    setData(data)
     initChart(data)
   }
   useEffect(() => {
     init()
   }, [])
 
-  return <div className="h-96" style={{ width: '95%' }} id="commit-until-year"></div>
+  return (
+    <div className="h-96 flex">
+      <div id="commit-until-year" className="flex-1"></div>
+      <div className="w-60 rank">
+        <RankList labelKey="count" take={10} data={data} />
+      </div>
+    </div>
+  )
 }
 
 export default CommitPerYear
