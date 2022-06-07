@@ -1,9 +1,10 @@
 import request from '@lib/request'
 import { map } from 'lodash-es'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ICommitDateAndCount } from '../../types'
 import * as echarts from 'echarts'
 import dayjs from 'dayjs'
+import RankList from '@pages/detail/components/RankList'
 
 const DOMID = 'commit-per-month'
 interface IProps {
@@ -11,6 +12,7 @@ interface IProps {
 }
 const CommitPerMonth = (props: IProps) => {
   const { year } = props
+  const [data, setData] = useState<ICommitDateAndCount[]>([])
   const getCommitPerMonth = async (): Promise<ICommitDateAndCount[]> => {
     return new Promise(async (resolve, reject) => {
       const repoUrl = 'git@github.com:facebook/react.git'
@@ -45,13 +47,28 @@ const CommitPerMonth = (props: IProps) => {
   }
   const init = async () => {
     const data = await getCommitPerMonth()
+    setData(data)
     initChart(data)
   }
   useEffect(() => {
     init()
   }, [year])
 
-  return <div className="h-96" style={{ width: '95%' }} id={DOMID}></div>
+  return (
+    <div className="h-96 flex">
+      <div className="flex-1" id={DOMID}></div>
+      <div className="w-60 rank">
+        <RankList
+          labelKey="count"
+          take={10}
+          data={data}
+          render={(item) => {
+            return `${item.date}(${item.count})`
+          }}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default CommitPerMonth
