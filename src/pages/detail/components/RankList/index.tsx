@@ -16,7 +16,7 @@ const RankList = (props: IProps) => {
     if (sortKey) {
       return data
         .sort((a, b) => {
-          return a[sortKey] - b[sortKey]
+          return b[sortKey] - a[sortKey]
         })
         .slice(0, take)
     }
@@ -43,8 +43,13 @@ const RankList = (props: IProps) => {
   })
   return (
     <div className="rank-list flex flex-col p-4 mt-6">
-      <div className="text-lg font-bold">Rank</div>
-      <div>{RankList}</div>
+      <div className="rank-wrap">
+        <div className="flex justify-between h-7">
+          <div>Rank</div>
+          <div>Commit count(Year)</div>
+        </div>
+        {RankList}
+      </div>
     </div>
   )
 }

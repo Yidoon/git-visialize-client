@@ -1,5 +1,5 @@
 import request from '@lib/request'
-import { map } from 'lodash-es'
+import { clone, map } from 'lodash-es'
 import { useEffect, useState } from 'react'
 import { ICommitDateAndCount } from '../../types'
 import * as echarts from 'echarts'
@@ -59,11 +59,12 @@ const CommitPerMonth = (props: IProps) => {
       <div className="flex-1" id={DOMID}></div>
       <div className="w-60 rank">
         <RankList
-          labelKey="count"
+          labelKey="date"
           take={10}
-          data={data}
+          data={clone(data)}
+          sortKey="count"
           render={(item) => {
-            return `${item.date}(${item.count})`
+            return `${item.count}(${item.date})`
           }}
         />
       </div>
