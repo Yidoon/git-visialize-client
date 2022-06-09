@@ -54,11 +54,11 @@ const CommitPerYear = () => {
       <div id="commit-until-year" className="flex-1"></div>
       <div className="w-60 rank">
         <RankList
-          labelKey="count"
           take={10}
+          titleAddon="Year"
           data={data}
-          render={(item) => {
-            return `${item.date}(${item.count})`
+          renderItem={(item) => {
+            return `${item.count}(${item.date})`
           }}
         />
       </div>

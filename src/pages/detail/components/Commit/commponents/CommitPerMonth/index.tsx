@@ -5,6 +5,7 @@ import { ICommitDateAndCount } from '../../types'
 import * as echarts from 'echarts'
 import dayjs from 'dayjs'
 import RankList from '@pages/detail/components/RankList'
+import { getMonthName } from '@utils'
 
 const DOMID = 'commit-per-month'
 interface IProps {
@@ -62,9 +63,10 @@ const CommitPerMonth = (props: IProps) => {
           labelKey="date"
           take={10}
           data={clone(data)}
+          titleAddon="Month"
           sortKey="count"
-          render={(item) => {
-            return `${item.count}(${item.date})`
+          renderItem={(item) => {
+            return `${item.count}(${getMonthName(item.date)})`
           }}
         />
       </div>
