@@ -4,15 +4,22 @@ import * as echarts from 'echarts'
 import { ICommitDateAndCount } from '../../types'
 import { map } from 'lodash-es'
 import RankList from '@pages/detail/components/RankList'
+import ChartBox from '@comp/ChartBox'
+import ContributorSelect from '@pages/detail/components/ContributorSelect'
+import PerYearSelect from '@pages/detail/components/PerYearSelect'
+import dayjs from 'dayjs'
+import { Space } from 'antd'
 
 const DOMID = 'commit-until-year'
 const CommitPerYear = () => {
   const [data, setData] = useState<ICommitDateAndCount[]>([])
-  const getCommitPerYear = async (): Promise<ICommitDateAndCount[]> => {
+
+  const getCommitCount = async (contributor?: string): Promise<ICommitDateAndCount[]> => {
     return new Promise(async (resolve, reject) => {
       const repoUrl = 'git@github.com:facebook/react.git'
-      const res = await request.get('/api/commit/until_year', {
+      const res = await request.get('/api/commit/commit_count', {
         github_repo_url: repoUrl,
+        contributor: contributor || '',
       })
       resolve(res.data)
     })
@@ -41,28 +48,53 @@ const CommitPerYear = () => {
   }
 
   const init = async () => {
-    const data = await getCommitPerYear()
+    const data = await getCommitCount()
     setData(data)
     initChart(data)
+  }
+  const handleSelectChange = async (val: string) => {
+    const data = await getCommitCount(val)
+    setData(data)
+    initChart(data)
+  }
+  const renderTitle = () => {
+    return (
+      <div className="per-month-title flex justify-between h-full">
+        <div className="title">Number of commits per year</div>
+        <div className="year-select">
+          <Space size={8}>
+            <ContributorSelect
+              style={{ width: 240 }}
+              allowClear
+              onChange={handleSelectChange}
+              showSearch
+              filterOption
+            />
+          </Space>
+        </div>
+      </div>
+    )
   }
   useEffect(() => {
     init()
   }, [])
 
   return (
-    <div className="h-96 flex">
-      <div id="commit-until-year" className="flex-1"></div>
-      <div className="w-60 rank">
-        <RankList
-          take={10}
-          titleAddon="Year"
-          data={data}
-          renderItem={(item) => {
-            return `${item.count}(${item.date})`
-          }}
-        />
+    <ChartBox title={renderTitle()}>
+      <div className="h-96 flex">
+        <div id="commit-until-year" className="flex-1"></div>
+        <div className="w-60 rank">
+          <RankList
+            take={10}
+            titleAddon="Year"
+            data={data}
+            renderItem={(item) => {
+              return `${item.count}(${item.date})`
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </ChartBox>
   )
 }
 

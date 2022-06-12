@@ -30,6 +30,7 @@ const PerYearSelect = (props: IProps) => {
   useEffect(() => {
     getPerYear()
   }, [])
+
   return (
     <Select placeholder="select year" {...props}>
       {options}
