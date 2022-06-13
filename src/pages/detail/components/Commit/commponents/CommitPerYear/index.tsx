@@ -6,8 +6,6 @@ import { map } from 'lodash-es'
 import RankList from '@pages/detail/components/RankList'
 import ChartBox from '@comp/ChartBox'
 import ContributorSelect from '@pages/detail/components/ContributorSelect'
-import PerYearSelect from '@pages/detail/components/PerYearSelect'
-import dayjs from 'dayjs'
 import { Space } from 'antd'
 
 const DOMID = 'commit-until-year'
